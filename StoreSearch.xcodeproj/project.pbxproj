@@ -21,6 +21,7 @@
 		2F51E44A1A0FB49100702944 /* StoreSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4491A0FB49100702944 /* StoreSearchTests.m */; };
 		2F51E4561A0FB5A100702944 /* PTRXSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */; };
 		2F51E4571A0FB5A100702944 /* PTRXSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */; };
+		2F51E45A1A0FC54C00702944 /* PTRXSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		2F51E4531A0FB5A100702944 /* PTRXSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchViewController.h; sourceTree = "<group>"; };
 		2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchViewController.m; sourceTree = "<group>"; };
 		2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXSearchViewController.xib; sourceTree = "<group>"; };
+		2F51E4581A0FC54C00702944 /* PTRXSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchResult.h; sourceTree = "<group>"; };
+		2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 				2F51E42E1A0FB49100702944 /* PTRXAppDelegate.m */,
 				2F51E4531A0FB5A100702944 /* PTRXSearchViewController.h */,
 				2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */,
+				2F51E4581A0FC54C00702944 /* PTRXSearchResult.h */,
+				2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */,
 				2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */,
 				2F51E4361A0FB49100702944 /* Images.xcassets */,
 				2F51E4251A0FB49100702944 /* Supporting Files */,
@@ -250,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F51E45A1A0FC54C00702944 /* PTRXSearchResult.m in Sources */,
 				2F51E42F1A0FB49100702944 /* PTRXAppDelegate.m in Sources */,
 				2F51E42B1A0FB49100702944 /* main.m in Sources */,
 				2F51E4561A0FB5A100702944 /* PTRXSearchViewController.m in Sources */,
