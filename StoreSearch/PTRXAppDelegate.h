@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class PTRXSearchViewController;
+
 @interface PTRXAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) PTRXSearchViewController *searchViewController;
 
 @end

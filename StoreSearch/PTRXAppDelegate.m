@@ -7,12 +7,18 @@
 //
 
 #import "PTRXAppDelegate.h"
+#import "PTRXSearchViewController.h"
 
 @implementation PTRXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.searchViewController = [[PTRXSearchViewController alloc] initWithNibName:@"PTRXSearchViewController" bundle:nil];
+    self.window.rootViewController = self.searchViewController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							

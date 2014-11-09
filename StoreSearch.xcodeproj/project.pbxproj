@@ -13,14 +13,14 @@
 		2F51E4291A0FB49100702944 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4271A0FB49100702944 /* InfoPlist.strings */; };
 		2F51E42B1A0FB49100702944 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E42A1A0FB49100702944 /* main.m */; };
 		2F51E42F1A0FB49100702944 /* PTRXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E42E1A0FB49100702944 /* PTRXAppDelegate.m */; };
-		2F51E4321A0FB49100702944 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4301A0FB49100702944 /* Main.storyboard */; };
-		2F51E4351A0FB49100702944 /* PTRXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4341A0FB49100702944 /* PTRXViewController.m */; };
 		2F51E4371A0FB49100702944 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4361A0FB49100702944 /* Images.xcassets */; };
 		2F51E43E1A0FB49100702944 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E43D1A0FB49100702944 /* XCTest.framework */; };
 		2F51E43F1A0FB49100702944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E41E1A0FB49100702944 /* Foundation.framework */; };
 		2F51E4401A0FB49100702944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E4221A0FB49100702944 /* UIKit.framework */; };
 		2F51E4481A0FB49100702944 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4461A0FB49100702944 /* InfoPlist.strings */; };
 		2F51E44A1A0FB49100702944 /* StoreSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4491A0FB49100702944 /* StoreSearchTests.m */; };
+		2F51E4561A0FB5A100702944 /* PTRXSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */; };
+		2F51E4571A0FB5A100702944 /* PTRXSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +44,15 @@
 		2F51E42C1A0FB49100702944 /* StoreSearch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StoreSearch-Prefix.pch"; sourceTree = "<group>"; };
 		2F51E42D1A0FB49100702944 /* PTRXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTRXAppDelegate.h; sourceTree = "<group>"; };
 		2F51E42E1A0FB49100702944 /* PTRXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTRXAppDelegate.m; sourceTree = "<group>"; };
-		2F51E4311A0FB49100702944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2F51E4331A0FB49100702944 /* PTRXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTRXViewController.h; sourceTree = "<group>"; };
-		2F51E4341A0FB49100702944 /* PTRXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTRXViewController.m; sourceTree = "<group>"; };
 		2F51E4361A0FB49100702944 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2F51E43C1A0FB49100702944 /* StoreSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F51E43D1A0FB49100702944 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2F51E4451A0FB49100702944 /* StoreSearchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoreSearchTests-Info.plist"; sourceTree = "<group>"; };
 		2F51E4471A0FB49100702944 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F51E4491A0FB49100702944 /* StoreSearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreSearchTests.m; sourceTree = "<group>"; };
+		2F51E4531A0FB5A100702944 /* PTRXSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchViewController.h; sourceTree = "<group>"; };
+		2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchViewController.m; sourceTree = "<group>"; };
+		2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXSearchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +114,9 @@
 			children = (
 				2F51E42D1A0FB49100702944 /* PTRXAppDelegate.h */,
 				2F51E42E1A0FB49100702944 /* PTRXAppDelegate.m */,
-				2F51E4301A0FB49100702944 /* Main.storyboard */,
-				2F51E4331A0FB49100702944 /* PTRXViewController.h */,
-				2F51E4341A0FB49100702944 /* PTRXViewController.m */,
+				2F51E4531A0FB5A100702944 /* PTRXSearchViewController.h */,
+				2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */,
+				2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */,
 				2F51E4361A0FB49100702944 /* Images.xcassets */,
 				2F51E4251A0FB49100702944 /* Supporting Files */,
 			);
@@ -231,7 +231,7 @@
 			files = (
 				2F51E4371A0FB49100702944 /* Images.xcassets in Resources */,
 				2F51E4291A0FB49100702944 /* InfoPlist.strings in Resources */,
-				2F51E4321A0FB49100702944 /* Main.storyboard in Resources */,
+				2F51E4571A0FB5A100702944 /* PTRXSearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,8 +251,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F51E42F1A0FB49100702944 /* PTRXAppDelegate.m in Sources */,
-				2F51E4351A0FB49100702944 /* PTRXViewController.m in Sources */,
 				2F51E42B1A0FB49100702944 /* main.m in Sources */,
+				2F51E4561A0FB5A100702944 /* PTRXSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,14 +281,6 @@
 				2F51E4281A0FB49100702944 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		2F51E4301A0FB49100702944 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F51E4311A0FB49100702944 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		2F51E4461A0FB49100702944 /* InfoPlist.strings */ = {

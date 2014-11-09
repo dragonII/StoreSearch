@@ -1,5 +1,5 @@
 //
-//  PTRXViewController.h
+//  PTRXSearchViewController.h
 //  StoreSearch
 //
 //  Created by Wang Long on 11/9/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PTRXViewController : UIViewController
+@interface PTRXSearchViewController : UIViewController
 
 @end
