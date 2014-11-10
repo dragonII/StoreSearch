@@ -11,10 +11,21 @@
 
 @implementation PTRXAppDelegate
 
+- (void)customizeApprearance
+{
+    UIColor *barTintColor = [UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+    [[UISearchBar appearance] setBarTintColor:barTintColor];
+    
+    self.window.tintColor = [UIColor colorWithRed:10/255.0f green:80/255.0f blue:80/200.0f alpha:1.0f];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [self customizeApprearance];
+    
     self.searchViewController = [[PTRXSearchViewController alloc] initWithNibName:@"PTRXSearchViewController" bundle:nil];
     self.window.rootViewController = self.searchViewController;
     [self.window makeKeyAndVisible];
