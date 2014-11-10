@@ -22,6 +22,9 @@
 		2F51E4561A0FB5A100702944 /* PTRXSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */; };
 		2F51E4571A0FB5A100702944 /* PTRXSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */; };
 		2F51E45A1A0FC54C00702944 /* PTRXSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */; };
+		2F5D90761A106B1200CC4C02 /* PTRXSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5D90751A106B1200CC4C02 /* PTRXSearchResultCell.xib */; };
+		2F5D907F1A10713000CC4C02 /* PTRXSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D907E1A10713000CC4C02 /* PTRXSearchResultCell.m */; };
+		2F5D90831A10770A00CC4C02 /* PTRXNothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,10 @@
 		2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXSearchViewController.xib; sourceTree = "<group>"; };
 		2F51E4581A0FC54C00702944 /* PTRXSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchResult.h; sourceTree = "<group>"; };
 		2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchResult.m; sourceTree = "<group>"; };
+		2F5D90751A106B1200CC4C02 /* PTRXSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXSearchResultCell.xib; sourceTree = "<group>"; };
+		2F5D907D1A10713000CC4C02 /* PTRXSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchResultCell.h; sourceTree = "<group>"; };
+		2F5D907E1A10713000CC4C02 /* PTRXSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchResultCell.m; sourceTree = "<group>"; };
+		2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXNothingFoundCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +128,11 @@
 				2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */,
 				2F51E4581A0FC54C00702944 /* PTRXSearchResult.h */,
 				2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */,
+				2F5D907D1A10713000CC4C02 /* PTRXSearchResultCell.h */,
+				2F5D907E1A10713000CC4C02 /* PTRXSearchResultCell.m */,
 				2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */,
+				2F5D90751A106B1200CC4C02 /* PTRXSearchResultCell.xib */,
+				2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */,
 				2F51E4361A0FB49100702944 /* Images.xcassets */,
 				2F51E4251A0FB49100702944 /* Supporting Files */,
 			);
@@ -234,6 +245,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5D90831A10770A00CC4C02 /* PTRXNothingFoundCell.xib in Resources */,
+				2F5D90761A106B1200CC4C02 /* PTRXSearchResultCell.xib in Resources */,
 				2F51E4371A0FB49100702944 /* Images.xcassets in Resources */,
 				2F51E4291A0FB49100702944 /* InfoPlist.strings in Resources */,
 				2F51E4571A0FB5A100702944 /* PTRXSearchViewController.xib in Resources */,
@@ -256,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F51E45A1A0FC54C00702944 /* PTRXSearchResult.m in Sources */,
+				2F5D907F1A10713000CC4C02 /* PTRXSearchResultCell.m in Sources */,
 				2F51E42F1A0FB49100702944 /* PTRXAppDelegate.m in Sources */,
 				2F51E42B1A0FB49100702944 /* main.m in Sources */,
 				2F51E4561A0FB5A100702944 /* PTRXSearchViewController.m in Sources */,
@@ -455,6 +469,7 @@
 				2F51E44F1A0FB49100702944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F51E4501A0FB49100702944 /* Build configuration list for PBXNativeTarget "StoreSearchTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +478,7 @@
 				2F51E4521A0FB49100702944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

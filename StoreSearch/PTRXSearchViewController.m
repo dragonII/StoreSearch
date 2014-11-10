@@ -8,6 +8,10 @@
 
 #import "PTRXSearchViewController.h"
 #import "PTRXSearchResult.h"
+#import "PTRXSearchResultCell.h"
+
+static NSString * const SearchResultCellIdentifier = @"SearchResultCell";
+static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
 
 @interface PTRXSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -35,6 +39,13 @@
     [super viewDidLoad];
     
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    self.tableView.rowHeight = 80;
+    
+    UINib *cellNib = [UINib nibWithNibName:@"PTRXSearchResultCell" bundle:nil];
+    UINib *notFoundNib = [UINib nibWithNibName:@"PTRXNothingFoundCell" bundle:nil];
+    
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:SearchResultCellIdentifier];
+    [self.tableView registerNib:notFoundNib forCellReuseIdentifier:NothongFoundCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,15 +66,11 @@
     }
 }
 
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifer = @"SearchResultCell";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifer];
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifer];
-    }
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchResultCell"];
     
     if([_searchResults count] == 0)
     {
@@ -76,6 +83,27 @@
         cell.detailTextLabel.text = searchResult.artistName;
     }
     return cell;
+}
+*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PTRXSearchResultCell *cell = (PTRXSearchResultCell *)[self.tableView dequeueReusableCellWithIdentifier:SearchResultCellIdentifier];
+    
+    if([_searchResults count] == 0)
+    {
+        return [self.tableView dequeueReusableCellWithIdentifier:NothongFoundCellIdentifier];
+        //cell.nameLabel.text = @"(Nothing found)";
+        //cell.artistNameLabel.text = @"";
+    } else {
+        PTRXSearchResult *searchResult = _searchResults[indexPath.row];
+        cell.nameLabel.text = searchResult.name;
+        cell.artistNameLabel.text = searchResult.artistName;
+        
+        return cell;
+    }
+    
+    //return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
