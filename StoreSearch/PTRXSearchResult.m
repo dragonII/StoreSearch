@@ -10,4 +10,9 @@
 
 @implementation PTRXSearchResult
 
+- (NSComparisonResult)compareName:(PTRXSearchResult *)other
+{
+    return [self.name localizedStandardCompare:other.name];
+}
+
 @end
