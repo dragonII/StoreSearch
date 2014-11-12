@@ -10,6 +10,8 @@
 #import "PTRXSearchResult.h"
 #import "PTRXSearchResultCell.h"
 
+#import <AFNetworking/AFNetworking.h>
+
 static NSString * const SearchResultCellIdentifier = @"SearchResultCell";
 static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
 static NSString * const LoadingCellIdentifier = @"LoadingCell";
@@ -25,13 +27,14 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 {
     NSMutableArray *_searchResults;
     BOOL _isLoading;
+    NSOperationQueue *_queue;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _queue = [[NSOperationQueue alloc] init];
     }
     return self;
 }
@@ -211,6 +214,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     }
 } */
 
+/*
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     if([searchBar.text length] > 0)
@@ -254,6 +258,44 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
             
             NSLog(@"DONE!");
         });
+    }
+}
+ */
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if([searchBar.text length] > 0)
+    {
+        [searchBar resignFirstResponder];
+        
+        _isLoading = YES;
+        [self.tableView reloadData];
+        
+        _searchResults = [NSMutableArray arrayWithCapacity:10];
+        
+        NSURL *url = [self urlWithSearchText:searchBar.text];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        
+        operation.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self parseDictionary:responseObject];
+            [_searchResults sortUsingSelector:@selector(compareName:)];
+            
+            _isLoading = NO;
+            [self.tableView reloadData];
+            //NSLog(@"Success! %@", responseObject);
+        }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            //NSLog(@"Failure! %@", error);
+            [self showNetworkError];
+            
+            _isLoading = NO;
+            [self.tableView reloadData];
+        }];
+        
+        [_queue addOperation:operation];
     }
 }
 
