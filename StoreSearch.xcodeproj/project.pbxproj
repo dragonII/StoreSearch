@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F4307D51A1307D000CCE884 /* PTRXLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4307D41A1307D000CCE884 /* PTRXLoadingCell.xib */; };
 		2F51E41F1A0FB49100702944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E41E1A0FB49100702944 /* Foundation.framework */; };
 		2F51E4211A0FB49100702944 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E4201A0FB49100702944 /* CoreGraphics.framework */; };
 		2F51E4231A0FB49100702944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E4221A0FB49100702944 /* UIKit.framework */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F4307D41A1307D000CCE884 /* PTRXLoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXLoadingCell.xib; sourceTree = "<group>"; };
 		2F51E41B1A0FB49100702944 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F51E41E1A0FB49100702944 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F51E4201A0FB49100702944 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -133,6 +135,7 @@
 				2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */,
 				2F5D90751A106B1200CC4C02 /* PTRXSearchResultCell.xib */,
 				2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */,
+				2F4307D41A1307D000CCE884 /* PTRXLoadingCell.xib */,
 				2F51E4361A0FB49100702944 /* Images.xcassets */,
 				2F51E4251A0FB49100702944 /* Supporting Files */,
 			);
@@ -245,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F4307D51A1307D000CCE884 /* PTRXLoadingCell.xib in Resources */,
 				2F5D90831A10770A00CC4C02 /* PTRXNothingFoundCell.xib in Resources */,
 				2F5D90761A106B1200CC4C02 /* PTRXSearchResultCell.xib in Resources */,
 				2F51E4371A0FB49100702944 /* Images.xcassets in Resources */,

@@ -12,6 +12,7 @@
 
 static NSString * const SearchResultCellIdentifier = @"SearchResultCell";
 static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
+static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 @interface PTRXSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -23,6 +24,7 @@ static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
 @implementation PTRXSearchViewController
 {
     NSMutableArray *_searchResults;
+    BOOL _isLoading;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,9 +45,11 @@ static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
     
     UINib *cellNib = [UINib nibWithNibName:@"PTRXSearchResultCell" bundle:nil];
     UINib *notFoundNib = [UINib nibWithNibName:@"PTRXNothingFoundCell" bundle:nil];
+    UINib *loadingNib = [UINib nibWithNibName:@"PTRXLoadingCell" bundle:nil];
     
     [self.tableView registerNib:cellNib forCellReuseIdentifier:SearchResultCellIdentifier];
     [self.tableView registerNib:notFoundNib forCellReuseIdentifier:NothongFoundCellIdentifier];
+    [self.tableView registerNib:loadingNib forCellReuseIdentifier:LoadingCellIdentifier];
     
     [self.searchBar becomeFirstResponder];
 }
@@ -58,7 +62,9 @@ static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(_searchResults == nil)
+    if(_isLoading) {
+        return 1;
+    } else if(_searchResults == nil)
     {
         return 0;
     } else if([_searchResults count] == 0) {
@@ -92,11 +98,16 @@ static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
 {
     PTRXSearchResultCell *cell = (PTRXSearchResultCell *)[self.tableView dequeueReusableCellWithIdentifier:SearchResultCellIdentifier];
     
-    if([_searchResults count] == 0)
+    if(_isLoading)
     {
-        return [self.tableView dequeueReusableCellWithIdentifier:NothongFoundCellIdentifier];
-        //cell.nameLabel.text = @"(Nothing found)";
-        //cell.artistNameLabel.text = @"";
+        UITableViewCell *loadingCell = [self.tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier forIndexPath:indexPath];
+        
+        UIActivityIndicatorView *spinner = (UIActivityIndicatorView *)[loadingCell viewWithTag:100];
+        [spinner startAnimating];
+        
+        return loadingCell;
+    } else if([_searchResults count] == 0) {
+        return [self.tableView dequeueReusableCellWithIdentifier:NothongFoundCellIdentifier forIndexPath:indexPath];
     } else {
         PTRXSearchResult *searchResult = _searchResults[indexPath.row];
         cell.nameLabel.text = searchResult.name;
@@ -152,7 +163,7 @@ static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([_searchResults count] == 0)
+    if([_searchResults count] == 0 || _isLoading)
     {
         return nil;
     } else {
@@ -160,33 +171,16 @@ static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
     }
 }
 
-/*
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self.searchBar resignFirstResponder];
-    _searchResults = [NSMutableArray arrayWithCapacity:10];
-    
-    if(![self.searchBar.text isEqualToString:@"justin bieber"])
-    {
-    
-        for(int i = 0; i < 3; i++)
-        {
-            PTRXSearchResult *searchResult = [[PTRXSearchResult alloc] init];
-            searchResult.name = [NSString stringWithFormat:@"Fake Result %d for", i];
-            searchResult.artistName = self.searchBar.text;
-            [_searchResults addObject:searchResult];
-        }
-    }
-    
-    [self.tableView reloadData];
-}
- */
 
+/*
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     if([self.searchBar.text length] > 0)
     {
         [self.searchBar resignFirstResponder];
+        
+        _isLoading = YES;
+        [self.tableView reloadData];
         
         _searchResults = [NSMutableArray arrayWithCapacity:10];
         
@@ -212,7 +206,54 @@ static NSString * const NothongFoundCellIdentifier = @"NothingFoundCell";
         [self parseDictionary:dictionary];
         [_searchResults sortUsingSelector:@selector(compareName:)];
         
+        _isLoading = NO;
         [self.tableView reloadData];
+    }
+} */
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if([searchBar.text length] > 0)
+    {
+        [searchBar resignFirstResponder];
+        
+        _isLoading = YES;
+        [self.tableView reloadData];
+        
+        _searchResults = [NSMutableArray arrayWithCapacity:10];
+        
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            NSURL *url = [self urlWithSearchText:searchBar.text];
+            NSString *jsonString = [self performStoreRequestWithURL:url];
+            
+            if(jsonString == nil)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showNetworkError];
+                });
+                return;
+            }
+            
+            NSDictionary *dictionary = [self parseJSON:jsonString];
+            if(dictionary == nil)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showNetworkError];
+                });
+                return;
+            }
+            
+            [self parseDictionary:dictionary];
+            [_searchResults sortUsingSelector:@selector(compareName:)];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _isLoading = NO;
+                [self.tableView reloadData];
+            });
+            
+            NSLog(@"DONE!");
+        });
     }
 }
 
