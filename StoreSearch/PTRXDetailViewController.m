@@ -112,4 +112,5 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.searchResult.storeURL]];
 }
 
+
 @end
