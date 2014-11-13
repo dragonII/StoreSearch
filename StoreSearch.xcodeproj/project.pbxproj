@@ -26,6 +26,7 @@
 		2F5D90761A106B1200CC4C02 /* PTRXSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5D90751A106B1200CC4C02 /* PTRXSearchResultCell.xib */; };
 		2F5D907F1A10713000CC4C02 /* PTRXSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D907E1A10713000CC4C02 /* PTRXSearchResultCell.m */; };
 		2F5D90831A10770A00CC4C02 /* PTRXNothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */; };
+		2F6E74D51A15103800AE0290 /* PTRXGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E74D41A15103800AE0290 /* PTRXGradientView.m */; };
 		2FE553C51A14916000CC0705 /* PTRXDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE553C31A14916000CC0705 /* PTRXDetailViewController.m */; };
 		2FE553C61A14916000CC0705 /* PTRXDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FE553C41A14916000CC0705 /* PTRXDetailViewController.xib */; };
 		FA7331F0BF3B987D489AFE64 /* libPods-StoreSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 869FF4F7902BC3F8012CE482 /* libPods-StoreSearch.a */; };
@@ -69,6 +70,8 @@
 		2F5D907D1A10713000CC4C02 /* PTRXSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchResultCell.h; sourceTree = "<group>"; };
 		2F5D907E1A10713000CC4C02 /* PTRXSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchResultCell.m; sourceTree = "<group>"; };
 		2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXNothingFoundCell.xib; sourceTree = "<group>"; };
+		2F6E74D31A15103800AE0290 /* PTRXGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXGradientView.h; sourceTree = "<group>"; };
+		2F6E74D41A15103800AE0290 /* PTRXGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXGradientView.m; sourceTree = "<group>"; };
 		2FE553C21A14916000CC0705 /* PTRXDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXDetailViewController.h; sourceTree = "<group>"; };
 		2FE553C31A14916000CC0705 /* PTRXDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXDetailViewController.m; sourceTree = "<group>"; };
 		2FE553C41A14916000CC0705 /* PTRXDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXDetailViewController.xib; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				2FE553C21A14916000CC0705 /* PTRXDetailViewController.h */,
 				2FE553C31A14916000CC0705 /* PTRXDetailViewController.m */,
 				2FE553C41A14916000CC0705 /* PTRXDetailViewController.xib */,
+				2F6E74D31A15103800AE0290 /* PTRXGradientView.h */,
+				2F6E74D41A15103800AE0290 /* PTRXGradientView.m */,
 				2F51E4361A0FB49100702944 /* Images.xcassets */,
 				2F51E4251A0FB49100702944 /* Supporting Files */,
 			);
@@ -335,6 +340,7 @@
 				2F51E45A1A0FC54C00702944 /* PTRXSearchResult.m in Sources */,
 				2F5D907F1A10713000CC4C02 /* PTRXSearchResultCell.m in Sources */,
 				2F51E42F1A0FB49100702944 /* PTRXAppDelegate.m in Sources */,
+				2F6E74D51A15103800AE0290 /* PTRXGradientView.m in Sources */,
 				2F51E42B1A0FB49100702944 /* main.m in Sources */,
 				2F51E4561A0FB5A100702944 /* PTRXSearchViewController.m in Sources */,
 				2FE553C51A14916000CC0705 /* PTRXDetailViewController.m in Sources */,

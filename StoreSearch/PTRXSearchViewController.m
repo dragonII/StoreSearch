@@ -135,6 +135,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.searchBar resignFirstResponder];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     PTRXDetailViewController *controller = [[PTRXDetailViewController alloc] initWithNibName:@"PTRXDetailViewController" bundle:nil];

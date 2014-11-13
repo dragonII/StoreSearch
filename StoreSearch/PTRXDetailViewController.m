@@ -46,6 +46,7 @@
     [self.priceButton setBackgroundImage:image forState:UIControlStateNormal];
     
     self.view.tintColor = [UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+    self.view.backgroundColor = [UIColor clearColor];
     
     self.popupView.layer.cornerRadius = 10.0f;
     
