@@ -20,6 +20,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
 
@@ -28,6 +29,14 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     NSMutableArray *_searchResults;
     BOOL _isLoading;
     NSOperationQueue *_queue;
+}
+
+- (IBAction)segmentChanged:(UISegmentedControl *)sender
+{
+    if(_searchResults != nil)
+    {
+        [self performSearch];
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,7 +52,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(108, 0, 0, 0);
     self.tableView.rowHeight = 80;
     
     UINib *cellNib = [UINib nibWithNibName:@"PTRXSearchResultCell" bundle:nil];
@@ -99,7 +108,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PTRXSearchResultCell *cell = (PTRXSearchResultCell *)[self.tableView dequeueReusableCellWithIdentifier:SearchResultCellIdentifier];
+    //PTRXSearchResultCell *cell = (PTRXSearchResultCell *)[self.tableView dequeueReusableCellWithIdentifier:SearchResultCellIdentifier];
     
     if(_isLoading)
     {
@@ -112,52 +121,16 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     } else if([_searchResults count] == 0) {
         return [self.tableView dequeueReusableCellWithIdentifier:NothongFoundCellIdentifier forIndexPath:indexPath];
     } else {
+        PTRXSearchResultCell *resultCell = (PTRXSearchResultCell *)[tableView dequeueReusableCellWithIdentifier:SearchResultCellIdentifier forIndexPath:indexPath];
+        
         PTRXSearchResult *searchResult = _searchResults[indexPath.row];
-        cell.nameLabel.text = searchResult.name;
-        cell.artistNameLabel.text = searchResult.artistName;
+        [resultCell configureForSearchResult:searchResult];
         
-        NSString *artistName = searchResult.artistName;
-        if(artistName == nil)
-        {
-            artistName = @"Unknown";
-        }
-        
-        NSString *kind = [self kindForDisplay:searchResult.kind];
-        cell.artistNameLabel.text = [NSString stringWithFormat:@"%@ (%@)", artistName, kind];
-        
-        return cell;
+        return resultCell;
     }
-    
-    //return cell;
 }
 
-- (NSString *)kindForDisplay:(NSString *)kind
-{
-    if([kind isEqualToString:@"album"])
-    {
-        return @"Album";
-    } else if([kind isEqualToString:@"audiobook"]) {
-        return @"Audio Book";
-    } else if([kind isEqualToString:@"book"]) {
-        return @"Book";
-    } else if([kind isEqualToString:@"ebook"]) {
-        return @"E-Book";
-    } else if([kind isEqualToString:@"feature-movie"]) {
-        return @"Movie";
-    } else if([kind isEqualToString:@"music-video"]) {
-        return @"Music Video";
-    } else if([kind isEqualToString:@"podcast"]) {
-        return @"Podcast";
-    } else if([kind isEqualToString:@"software"]) {
-        return @"App";
-    } else if([kind isEqualToString:@"song"]) {
-        return @"Song";
-    } else if([kind isEqualToString:@"tv-episode"]) {
-        return @"TV Episode";
-    } else {
-        return kind;
-    }
-}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -262,11 +235,11 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 }
  */
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (void)performSearch
 {
-    if([searchBar.text length] > 0)
+    if([self.searchBar.text length] > 0)
     {
-        [searchBar resignFirstResponder];
+        [self.searchBar resignFirstResponder];
         
         [_queue cancelAllOperations];
         
@@ -275,7 +248,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
         
         _searchResults = [NSMutableArray arrayWithCapacity:10];
         
-        NSURL *url = [self urlWithSearchText:searchBar.text];
+        NSURL *url = [self urlWithSearchText:self.searchBar.text category:self.segmentedControl.selectedSegmentIndex];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -302,6 +275,11 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
         
         [_queue addOperation:operation];
     }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self performSearch];
 }
 
 - (void)parseDictionary:(NSDictionary *)dictionary
@@ -345,8 +323,8 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     PTRXSearchResult *searchResult = [[PTRXSearchResult alloc] init];
     searchResult.name = dictionary[@"trackName"];
     searchResult.artistName = dictionary[@"artistName"];
-    searchResult.artworkURL60 = dictionary[@"artworkURL60"];
-    searchResult.artworkURL100 = dictionary[@"artworkURL100"];
+    searchResult.artworkURL60 = dictionary[@"artworkUrl60"];
+    searchResult.artworkURL100 = dictionary[@"artworkUrl100"];
     searchResult.storeURL = dictionary[@"trackViewUrl"];
     searchResult.kind = dictionary[@"kind"];
     searchResult.price = dictionary[@"trackPrice"];
@@ -443,10 +421,20 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     [alertView show];
 }
 
-- (NSURL *)urlWithSearchText:(NSString *)searchText
+- (NSURL *)urlWithSearchText:(NSString *)searchText category:(NSInteger)category
 {
+    NSString *categoryName;
+    switch(category)
+    {
+        case 0: categoryName = @""; break;
+        case 1: categoryName = @"musicTrack"; break;
+        case 2: categoryName = @"software"; break;
+        case 3: categoryName = @"ebook"; break;
+    }
+    
     NSString *escapeSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@", escapeSearchText];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&entity=%@", escapeSearchText, categoryName];
     NSLog(@"urlString: '%@", urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     return url;
