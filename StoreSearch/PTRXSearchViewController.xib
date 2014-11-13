@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PTRXSearchViewController">
             <connections>
                 <outlet property="searchBar" destination="Nfl-qg-eX7" id="UEf-fk-W4c"/>
+                <outlet property="segmentedControl" destination="mJA-Tf-Uyg" id="xcm-cJ-uKi"/>
                 <outlet property="tableView" destination="huY-gY-7Hb" id="pHT-CT-FpB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,6 +34,28 @@
                         <outlet property="delegate" destination="-1" id="aWn-p4-oWf"/>
                     </connections>
                 </searchBar>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eor-Be-8HY">
+                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem id="mV2-KH-QUf">
+                            <nil key="title"/>
+                            <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="mJA-Tf-Uyg">
+                                <rect key="frame" x="10" y="7" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Music"/>
+                                    <segment title="Software"/>
+                                    <segment title="E-Books"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="-1" eventType="valueChanged" id="wi2-hL-oP0"/>
+                                </connections>
+                            </segmentedControl>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
