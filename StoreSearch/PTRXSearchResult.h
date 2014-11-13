@@ -21,5 +21,6 @@
 @property (copy, nonatomic) NSString *genre;
 
 - (NSComparisonResult)compareName:(PTRXSearchResult *)other;
+- (NSString *)kindForDisplay;
 
 @end

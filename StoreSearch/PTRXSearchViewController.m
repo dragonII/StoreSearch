@@ -9,6 +9,7 @@
 #import "PTRXSearchViewController.h"
 #import "PTRXSearchResult.h"
 #import "PTRXSearchResultCell.h"
+#import "PTRXDetailViewController.h"
 
 #import <AFNetworking/AFNetworking.h>
 
@@ -135,6 +136,16 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    PTRXDetailViewController *controller = [[PTRXDetailViewController alloc] initWithNibName:@"PTRXDetailViewController" bundle:nil];
+    
+    PTRXSearchResult *searchResult = _searchResults[indexPath.row];
+    controller.searchResult = searchResult;
+    //[self presentViewController:controller animated:YES completion:nil];
+    controller.view.frame = self.view.frame;
+    [self.view addSubview:controller.view];
+    [self addChildViewController:controller];
+    [controller didMoveToParentViewController:self];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
