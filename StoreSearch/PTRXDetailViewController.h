@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) PTRXSearchResult *searchResult;
 
-//- (void)configureDetail:(PTRXSearchResult *)searchResult;
+- (void)presentInParentViewController:(UIViewController *)parentViewController;
+- (void)dismissFromParentViewController;
 
 @end

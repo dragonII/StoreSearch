@@ -142,11 +142,8 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     
     PTRXSearchResult *searchResult = _searchResults[indexPath.row];
     controller.searchResult = searchResult;
-    //[self presentViewController:controller animated:YES completion:nil];
-    controller.view.frame = self.view.frame;
-    [self.view addSubview:controller.view];
-    [self addChildViewController:controller];
-    [controller didMoveToParentViewController:self];
+    
+    [controller presentInParentViewController:self];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -305,7 +302,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     
     for(NSDictionary *resultDict in array)
     {
-        NSLog(@"wrapperType: %@, kind: %@", resultDict[@"wrapperType"], resultDict[@"kind"]);
+        //NSLog(@"wrapperType: %@, kind: %@", resultDict[@"wrapperType"], resultDict[@"kind"]);
         
         PTRXSearchResult *searchResult;
         
