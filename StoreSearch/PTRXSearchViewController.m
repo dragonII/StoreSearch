@@ -10,6 +10,7 @@
 #import "PTRXSearchResult.h"
 #import "PTRXSearchResultCell.h"
 #import "PTRXDetailViewController.h"
+#import "PTRXLandscapeViewController.h"
 
 #import <AFNetworking/AFNetworking.h>
 
@@ -30,6 +31,9 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     NSMutableArray *_searchResults;
     BOOL _isLoading;
     NSOperationQueue *_queue;
+    PTRXLandscapeViewController *_landscapeViewController;
+    UIStatusBarStyle _statusBarStyle;
+    __weak PTRXDetailViewController *_detailViewController;
 }
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender
@@ -49,9 +53,70 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     return self;
 }
 
+- (void)showLandscapeViewWithDuration:(NSTimeInterval)duration
+{
+    
+    if(_landscapeViewController == nil)
+    {
+        _landscapeViewController = [[PTRXLandscapeViewController alloc] initWithNibName:@"PTRXLandscapeViewController" bundle:nil];
+        
+        _landscapeViewController.view.frame = self.view.bounds;
+        _landscapeViewController.view.alpha = 0.0f;
+        
+        [self.view addSubview:_landscapeViewController.view];
+        [self addChildViewController:_landscapeViewController];
+        
+        [UIView animateWithDuration:duration animations:^{
+            _landscapeViewController.view.alpha = 1.0f;
+            
+            _statusBarStyle = UIStatusBarStyleLightContent;
+            [self setNeedsStatusBarAppearanceUpdate];
+        } completion:^(BOOL finished) {
+            [_landscapeViewController didMoveToParentViewController:self];
+        }];
+        
+        [self.searchBar resignFirstResponder];
+        [_detailViewController dismissFromParentViewControllerWithAnimationType:PTRXDetailViewControllerAnimationTypeFade];
+    }
+}
+
+- (void)hideLandscapeViewWithDuration:(NSTimeInterval)duration
+{
+    if(_landscapeViewController != nil)
+    {
+        [_landscapeViewController willMoveToParentViewController:nil];
+        
+        [UIView animateWithDuration:duration animations:^{
+            _landscapeViewController.view.alpha = 0.0f;
+            
+            _statusBarStyle = UIStatusBarStyleDefault;
+            [self setNeedsStatusBarAppearanceUpdate];
+        } completion:^(BOOL finished) {
+            [_landscapeViewController.view removeFromSuperview];
+            [_landscapeViewController removeFromParentViewController];
+            _landscapeViewController = nil;
+        }];
+    }
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    
+    if(UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
+    {
+        [self hideLandscapeViewWithDuration:duration];
+    } else {
+        [self showLandscapeViewWithDuration:duration];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _statusBarStyle = UIStatusBarStyleDefault;
     
     self.tableView.contentInset = UIEdgeInsetsMake(108, 0, 0, 0);
     self.tableView.rowHeight = 80;
@@ -65,6 +130,11 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     [self.tableView registerNib:loadingNib forCellReuseIdentifier:LoadingCellIdentifier];
     
     [self.searchBar becomeFirstResponder];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return _statusBarStyle;
 }
 
 - (void)didReceiveMemoryWarning
@@ -144,6 +214,8 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     controller.searchResult = searchResult;
     
     [controller presentInParentViewController:self];
+    
+    _detailViewController = controller;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath

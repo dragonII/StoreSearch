@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, PTRXDetailViewControllerAnimationType)
+{
+    PTRXDetailViewControllerAnimationTypeSlide,
+    PTRXDetailViewControllerAnimationTypeFade
+};
+
 @class  PTRXSearchResult;
 
 @interface PTRXDetailViewController : UIViewController
@@ -15,6 +21,6 @@
 @property (strong, nonatomic) PTRXSearchResult *searchResult;
 
 - (void)presentInParentViewController:(UIViewController *)parentViewController;
-- (void)dismissFromParentViewController;
+- (void)dismissFromParentViewControllerWithAnimationType:(PTRXDetailViewControllerAnimationType)animationType;
 
 @end

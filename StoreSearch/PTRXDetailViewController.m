@@ -78,19 +78,24 @@
 
 - (IBAction)close:(id)sender
 {
-    [self dismissFromParentViewController];
+    [self dismissFromParentViewControllerWithAnimationType:PTRXDetailViewControllerAnimationTypeSlide];
 }
 
-- (void)dismissFromParentViewController
+- (void)dismissFromParentViewControllerWithAnimationType:(PTRXDetailViewControllerAnimationType)animationType
 {
     [self willMoveToParentViewController:nil];
     
     [UIView animateWithDuration:1.0 animations:^{
-        CGRect rect = self.view.bounds;
-        NSLog(@"rect.origin.y = %f, rect.height = %f", rect.origin.y, rect.size.height);
-        rect.origin.y += rect.size.height;
-        self.view.frame = rect;
+        if(animationType == PTRXDetailViewControllerAnimationTypeSlide) {
+            CGRect rect = self.view.bounds;
+            rect.origin.y += rect.size.height;
+            self.view.frame = rect;
+        } else {
+            self.view.alpha = 0.0f;
+        }
+        
         _gradientView.alpha = 0.0f;
+
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
