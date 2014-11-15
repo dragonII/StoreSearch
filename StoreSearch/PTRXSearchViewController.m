@@ -60,6 +60,8 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     {
         _landscapeViewController = [[PTRXLandscapeViewController alloc] initWithNibName:@"PTRXLandscapeViewController" bundle:nil];
         
+        _landscapeViewController.searchResults = _searchResults;
+        
         _landscapeViewController.view.frame = self.view.bounds;
         _landscapeViewController.view.alpha = 0.0f;
         
@@ -515,7 +517,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     
     NSString *escapeSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&entity=%@", escapeSearchText, categoryName];
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapeSearchText, categoryName];
     NSLog(@"urlString: '%@", urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     return url;

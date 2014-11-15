@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface PTRXLandscapeViewController : UIViewController
+
+@property (strong, nonatomic) NSArray *searchResults;
 
 @end
