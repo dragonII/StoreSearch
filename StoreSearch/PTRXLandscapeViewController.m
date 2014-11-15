@@ -9,6 +9,8 @@
 #import "PTRXLandscapeViewController.h"
 #import "PTRXSearchResult.h"
 
+#import <AFNetworking/UIButton+AFNetworking.h>
+
 @interface PTRXLandscapeViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -30,6 +32,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,6 +40,8 @@
     self.scrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"LandscapeBackground"]];
     
     self.pageControl.numberOfPages = 0;
+    
+    //[self testButtonImage];
 }
 
 - (void)viewWillLayoutSubviews
@@ -68,6 +73,25 @@
                      } completion:nil];
 }
 
+- (void)downloadImageForSearchResult:(PTRXSearchResult *)searchResult andPlaceOnButton:(UIButton *)button
+{
+    NSURL *url = [NSURL URLWithString:searchResult.artworkURL60];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+    
+    __weak UIButton *weakButton = button;
+    
+    [button setImageForState:UIControlStateNormal
+              withURLRequest:request
+            placeholderImage:nil
+                     success:^(NSURLRequest *request, NSURLResponse *response, UIImage *image) {
+                         
+                         UIImage *unscaledImage = [UIImage imageWithCGImage:image.CGImage scale:1.0 orientation:image.imageOrientation];
+                         [weakButton setImage:unscaledImage forState:UIControlStateNormal];
+                     } failure:nil];
+}
+
 - (void)tileButtons
 {
     int columnsPerPage = 5;
@@ -96,10 +120,12 @@
     
     for(PTRXSearchResult *searchResult in self.searchResults)
     {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        button.backgroundColor = [UIColor whiteColor];
-        [button setTitle:[NSString stringWithFormat:@"%d", index] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"LandscapeButton"] forState:UIControlStateNormal];
+        
+        [self downloadImageForSearchResult:searchResult andPlaceOnButton:button];
+        
         button.frame = CGRectMake(x + marginHorz, 20.0 + row * itemHeight + marginVerz, buttonWidth, buttonHeight);
         
         [self.scrollView addSubview:button];
@@ -139,6 +165,20 @@
 - (void)dealloc
 {
     NSLog(@"dealloc %@", self);
+    
+    int i = 0;
+    
+    for(id object in self.scrollView.subviews)
+    {
+        if([object isKindOfClass:[UIButton class]])
+        {
+            [(UIButton *)object cancelImageRequestOperationForState:UIControlStateNormal];
+            i++;
+            NSLog(@"Cancel buttons: %d", i);
+        } else {
+            NSLog(@"Class Name: %@", [[object class] description]);
+        }
+    }
 }
 
 @end
