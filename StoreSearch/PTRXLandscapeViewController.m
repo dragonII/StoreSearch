@@ -8,6 +8,7 @@
 
 #import "PTRXLandscapeViewController.h"
 #import "PTRXSearchResult.h"
+#import "PTRXSearch.h"
 
 #import <AFNetworking/UIButton+AFNetworking.h>
 
@@ -118,7 +119,7 @@
     int row = 0;
     int column = 0;
     
-    for(PTRXSearchResult *searchResult in self.searchResults)
+    for(PTRXSearchResult *searchResult in self.search.searchResults)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         
@@ -147,7 +148,7 @@
     }
     
     int tilesPerPage = columnsPerPage * 3;
-    int numPages = ceilf([self.searchResults count] / (float)tilesPerPage);
+    int numPages = ceilf([self.search.searchResults count] / (float)tilesPerPage);
     self.scrollView.contentSize = CGSizeMake(numPages * scrollViewWidth, self.scrollView.bounds.size.height);
     
     NSLog(@"Number of pages: %d", numPages);
@@ -166,17 +167,11 @@
 {
     NSLog(@"dealloc %@", self);
     
-    int i = 0;
-    
     for(id object in self.scrollView.subviews)
     {
         if([object isKindOfClass:[UIButton class]])
         {
             [(UIButton *)object cancelImageRequestOperationForState:UIControlStateNormal];
-            i++;
-            NSLog(@"Cancel buttons: %d", i);
-        } else {
-            NSLog(@"Class Name: %@", [[object class] description]);
         }
     }
 }

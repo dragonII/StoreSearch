@@ -11,6 +11,8 @@
 #import "PTRXSearchResultCell.h"
 #import "PTRXDetailViewController.h"
 #import "PTRXLandscapeViewController.h"
+#import "PTRXSearch.h"
+
 
 #import <AFNetworking/AFNetworking.h>
 
@@ -28,9 +30,10 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 @implementation PTRXSearchViewController
 {
-    NSMutableArray *_searchResults;
-    BOOL _isLoading;
-    NSOperationQueue *_queue;
+    //NSMutableArray *_searchResults;
+    //BOOL _isLoading;
+    //NSOperationQueue *_queue;
+    PTRXSearch *_search;
     PTRXLandscapeViewController *_landscapeViewController;
     UIStatusBarStyle _statusBarStyle;
     __weak PTRXDetailViewController *_detailViewController;
@@ -38,12 +41,13 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender
 {
-    if(_searchResults != nil)
+    if(_search != nil)
     {
         [self performSearch];
     }
 }
 
+/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,6 +56,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     }
     return self;
 }
+ */
 
 - (void)showLandscapeViewWithDuration:(NSTimeInterval)duration
 {
@@ -60,7 +65,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     {
         _landscapeViewController = [[PTRXLandscapeViewController alloc] initWithNibName:@"PTRXLandscapeViewController" bundle:nil];
         
-        _landscapeViewController.searchResults = _searchResults;
+        _landscapeViewController.search = _search;
         
         _landscapeViewController.view.frame = self.view.bounds;
         _landscapeViewController.view.alpha = 0.0f;
@@ -147,15 +152,15 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(_isLoading) {
-        return 1;
-    } else if(_searchResults == nil)
+    if(_search == nil)
     {
-        return 0;
-    } else if([_searchResults count] == 0) {
-        return 1;
+        return 0; // Not searched yet
+    } else if(_search.isLoading) {
+        return 1; // Loading...
+    } else if([_search.searchResults count] == 0) {
+        return 1; // Nothing Found
     } else {
-        return [_searchResults count];
+        return [_search.searchResults count];
     }
 }
 
@@ -183,7 +188,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 {
     //PTRXSearchResultCell *cell = (PTRXSearchResultCell *)[self.tableView dequeueReusableCellWithIdentifier:SearchResultCellIdentifier];
     
-    if(_isLoading)
+    if(_search.isLoading)
     {
         UITableViewCell *loadingCell = [self.tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier forIndexPath:indexPath];
         
@@ -191,12 +196,12 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
         [spinner startAnimating];
         
         return loadingCell;
-    } else if([_searchResults count] == 0) {
+    } else if([_search.searchResults count] == 0) {
         return [self.tableView dequeueReusableCellWithIdentifier:NothongFoundCellIdentifier forIndexPath:indexPath];
     } else {
         PTRXSearchResultCell *resultCell = (PTRXSearchResultCell *)[tableView dequeueReusableCellWithIdentifier:SearchResultCellIdentifier forIndexPath:indexPath];
         
-        PTRXSearchResult *searchResult = _searchResults[indexPath.row];
+        PTRXSearchResult *searchResult = _search.searchResults[indexPath.row];
         [resultCell configureForSearchResult:searchResult];
         
         return resultCell;
@@ -212,7 +217,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     
     PTRXDetailViewController *controller = [[PTRXDetailViewController alloc] initWithNibName:@"PTRXDetailViewController" bundle:nil];
     
-    PTRXSearchResult *searchResult = _searchResults[indexPath.row];
+    PTRXSearchResult *searchResult = _search.searchResults[indexPath.row];
     controller.searchResult = searchResult;
     
     [controller presentInParentViewController:self];
@@ -222,7 +227,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([_searchResults count] == 0 || _isLoading)
+    if([_search.searchResults count] == 0 || _search.isLoading)
     {
         return nil;
     } else {
@@ -318,6 +323,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
 }
  */
 
+/*
 - (void)performSearch
 {
     if([self.searchBar.text length] > 0)
@@ -359,107 +365,34 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
         [_queue addOperation:operation];
     }
 }
+ */
+
+- (void)performSearch
+{
+    _search = [[PTRXSearch alloc] init];
+    NSLog(@"allocated %@", _search);
+    
+    [_search performSearchForText:self.searchBar.text
+                         category:self.segmentedControl.selectedSegmentIndex
+                       completion:^(BOOL success) {
+                           if(!success) {
+                               [self showNetworkError];
+                           }
+                           
+                           [self.tableView reloadData];
+    }];
+    
+    [self.tableView reloadData];
+    [self.searchBar resignFirstResponder];
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self performSearch];
 }
 
-- (void)parseDictionary:(NSDictionary *)dictionary
-{
-    NSArray *array = dictionary[@"results"];
-    if(array == nil)
-    {
-        NSLog(@"Expected 'results' array");
-        return;
-    }
-    
-    for(NSDictionary *resultDict in array)
-    {
-        //NSLog(@"wrapperType: %@, kind: %@", resultDict[@"wrapperType"], resultDict[@"kind"]);
-        
-        PTRXSearchResult *searchResult;
-        
-        NSString *wrapperType = resultDict[@"wrapperType"];
-        NSString *kind = resultDict[@"kind"];
-        
-        if([wrapperType isEqualToString:@"track"])
-        {
-            searchResult = [self parseTrack:resultDict];
-        } else if([wrapperType isEqualToString:@"audiobook"]) {
-            searchResult = [self parseAudioBook:resultDict];
-        } else if([wrapperType isEqualToString:@"software"]) {
-            searchResult = [self parseSoftware:resultDict];
-        } else if([kind isEqualToString:@"ebook"]) {
-            searchResult = [self parseEBook:resultDict];
-        }
-        
-        if(searchResult != nil)
-        {
-            [_searchResults addObject:searchResult];
-        }
-    }
-}
 
-- (PTRXSearchResult *)parseTrack:(NSDictionary *)dictionary
-{
-    PTRXSearchResult *searchResult = [[PTRXSearchResult alloc] init];
-    searchResult.name = dictionary[@"trackName"];
-    searchResult.artistName = dictionary[@"artistName"];
-    searchResult.artworkURL60 = dictionary[@"artworkUrl60"];
-    searchResult.artworkURL100 = dictionary[@"artworkUrl100"];
-    searchResult.storeURL = dictionary[@"trackViewUrl"];
-    searchResult.kind = dictionary[@"kind"];
-    searchResult.price = dictionary[@"trackPrice"];
-    searchResult.currency = dictionary[@"currency"];
-    searchResult.genre = dictionary[@"primaryGenreName"];
-    return searchResult;
-}
 
-- (PTRXSearchResult *)parseAudioBook:(NSDictionary *)dictionary
-{
-    PTRXSearchResult *searchResult = [[PTRXSearchResult alloc] init];
-    searchResult.name = dictionary[@"collectionName"];
-    searchResult.artistName = dictionary[@"artistName"];
-    searchResult.artworkURL60 = dictionary[@"artworkUrl60"];
-    searchResult.artworkURL100 = dictionary[@"artworkUrl100"];
-    searchResult.storeURL = dictionary[@"collectionViewUrl"];
-    searchResult.kind = @"audiobook";
-    searchResult.price = dictionary[@"collectionPrice"];
-    searchResult.currency = dictionary[@"currency"];
-    searchResult.genre = dictionary[@"primaryGenreName"];
-    return searchResult;
-}
-
-- (PTRXSearchResult *)parseSoftware:(NSDictionary *)dictionary
-{
-    PTRXSearchResult *searchResult = [[PTRXSearchResult alloc] init];
-    searchResult.name = dictionary[@"trackName"];
-    searchResult.artistName = dictionary[@"artistName"];
-    searchResult.artworkURL60 = dictionary[@"artworkUrl60"];
-    searchResult.artworkURL100 = dictionary[@"artworkUrl100"];
-    searchResult.storeURL = dictionary[@"trackViewUrl"];
-    searchResult.kind = dictionary[@"kind"];
-    searchResult.price = dictionary[@"price"];
-    searchResult.currency = dictionary[@"currency"];
-    searchResult.genre = dictionary[@"primaryGenreName"];
-    return searchResult;
-}
-
-- (PTRXSearchResult *)parseEBook:(NSDictionary *)dictionary
-{
-    PTRXSearchResult *searchResult = [[PTRXSearchResult alloc] init];
-    searchResult.name = dictionary[@"trackName"];
-    searchResult.artistName = dictionary[@"artistName"];
-    searchResult.artworkURL60 = dictionary[@"artworkUrl60"];
-    searchResult.artworkURL100 = dictionary[@"artworkUrl100"];
-    searchResult.storeURL = dictionary[@"trackViewUrl"];
-    searchResult.kind = dictionary[@"kind"];
-    searchResult.price = dictionary[@"price"];
-    searchResult.currency = dictionary[@"currency"];
-    searchResult.genre = [(NSArray *)dictionary[@"genres"] componentsJoinedByString:@", "];
-    return searchResult;
-}
 
 - (NSString *)performStoreRequestWithURL:(NSURL *)url
 {
@@ -504,24 +437,7 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
     [alertView show];
 }
 
-- (NSURL *)urlWithSearchText:(NSString *)searchText category:(NSInteger)category
-{
-    NSString *categoryName;
-    switch(category)
-    {
-        case 0: categoryName = @""; break;
-        case 1: categoryName = @"musicTrack"; break;
-        case 2: categoryName = @"software"; break;
-        case 3: categoryName = @"ebook"; break;
-    }
-    
-    NSString *escapeSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapeSearchText, categoryName];
-    NSLog(@"urlString: '%@", urlString);
-    NSURL *url = [NSURL URLWithString:urlString];
-    return url;
-}
+
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
 {

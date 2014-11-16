@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F2C392B1A15E12200D0280F /* PTRXLandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2C39291A15E12200D0280F /* PTRXLandscapeViewController.m */; };
 		2F2C392C1A15E12200D0280F /* PTRXLandscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C392A1A15E12200D0280F /* PTRXLandscapeViewController.xib */; };
+		2F33432A1A189F0C00008283 /* PTRXSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3343291A189F0C00008283 /* PTRXSearch.m */; };
 		2F4307D51A1307D000CCE884 /* PTRXLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4307D41A1307D000CCE884 /* PTRXLoadingCell.xib */; };
 		2F51E41F1A0FB49100702944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E41E1A0FB49100702944 /* Foundation.framework */; };
 		2F51E4211A0FB49100702944 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E4201A0FB49100702944 /* CoreGraphics.framework */; };
@@ -49,6 +50,8 @@
 		2F2C39281A15E12200D0280F /* PTRXLandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXLandscapeViewController.h; sourceTree = "<group>"; };
 		2F2C39291A15E12200D0280F /* PTRXLandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXLandscapeViewController.m; sourceTree = "<group>"; };
 		2F2C392A1A15E12200D0280F /* PTRXLandscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXLandscapeViewController.xib; sourceTree = "<group>"; };
+		2F3343281A189F0C00008283 /* PTRXSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearch.h; sourceTree = "<group>"; };
+		2F3343291A189F0C00008283 /* PTRXSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearch.m; sourceTree = "<group>"; };
 		2F4307D41A1307D000CCE884 /* PTRXLoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXLoadingCell.xib; sourceTree = "<group>"; };
 		2F51E41B1A0FB49100702944 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F51E41E1A0FB49100702944 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -164,6 +167,8 @@
 				2F2C39281A15E12200D0280F /* PTRXLandscapeViewController.h */,
 				2F2C39291A15E12200D0280F /* PTRXLandscapeViewController.m */,
 				2F2C392A1A15E12200D0280F /* PTRXLandscapeViewController.xib */,
+				2F3343281A189F0C00008283 /* PTRXSearch.h */,
+				2F3343291A189F0C00008283 /* PTRXSearch.m */,
 				2F51E4361A0FB49100702944 /* Images.xcassets */,
 				2F51E4251A0FB49100702944 /* Supporting Files */,
 			);
@@ -348,6 +353,7 @@
 			files = (
 				2F2C392B1A15E12200D0280F /* PTRXLandscapeViewController.m in Sources */,
 				2F51E45A1A0FC54C00702944 /* PTRXSearchResult.m in Sources */,
+				2F33432A1A189F0C00008283 /* PTRXSearch.m in Sources */,
 				2F5D907F1A10713000CC4C02 /* PTRXSearchResultCell.m in Sources */,
 				2F51E42F1A0FB49100702944 /* PTRXAppDelegate.m in Sources */,
 				2F6E74D51A15103800AE0290 /* PTRXGradientView.m in Sources */,
