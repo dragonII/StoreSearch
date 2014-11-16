@@ -1,0 +1,15 @@
+
+/* Class = "IBUISearchBar"; placeholder = "App name, artist, song, album, ebook"; ObjectID = "Nfl-qg-eX7"; */
+"Nfl-qg-eX7.placeholder" = "App 名称，歌手，歌曲，专辑，电子书";
+
+/* Class = "IBUISegmentedControl"; mJA-Tf-Uyg.segmentTitles[0] = "All"; ObjectID = "mJA-Tf-Uyg"; */
+"mJA-Tf-Uyg.segmentTitles[0]" = "全部";
+
+/* Class = "IBUISegmentedControl"; mJA-Tf-Uyg.segmentTitles[1] = "Music"; ObjectID = "mJA-Tf-Uyg"; */
+"mJA-Tf-Uyg.segmentTitles[1]" = "音乐";
+
+/* Class = "IBUISegmentedControl"; mJA-Tf-Uyg.segmentTitles[2] = "Software"; ObjectID = "mJA-Tf-Uyg"; */
+"mJA-Tf-Uyg.segmentTitles[2]" = "软件";
+
+/* Class = "IBUISegmentedControl"; mJA-Tf-Uyg.segmentTitles[3] = "E-Books"; ObjectID = "mJA-Tf-Uyg"; */
+"mJA-Tf-Uyg.segmentTitles[3]" = "电子书";

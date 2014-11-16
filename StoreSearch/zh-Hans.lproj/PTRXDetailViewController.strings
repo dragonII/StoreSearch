@@ -1,0 +1,21 @@
+
+/* Class = "IBUILabel"; text = "Type:"; ObjectID = "7tS-Oi-cmr"; */
+"7tS-Oi-cmr.text" = "类型:";
+
+/* Class = "IBUIButton"; normalTitle = "$9.99"; ObjectID = "AYk-tF-J9O"; */
+"AYk-tF-J9O.normalTitle" = "$9.99";
+
+/* Class = "IBUILabel"; text = "Genre Value"; ObjectID = "mN8-Bc-Vpk"; */
+"mN8-Bc-Vpk.text" = "Genre Value";
+
+/* Class = "IBUILabel"; text = "Kind Value"; ObjectID = "nmR-Ae-qBg"; */
+"nmR-Ae-qBg.text" = "Kind Value";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "qQ2-Mm-p6M"; */
+"qQ2-Mm-p6M.text" = "Name";
+
+/* Class = "IBUILabel"; text = "Genre:"; ObjectID = "sEC-AN-Rj5"; */
+"sEC-AN-Rj5.text" = "风格:";
+
+/* Class = "IBUILabel"; text = "Artist Name"; ObjectID = "u6Q-2i-LSQ"; */
+"u6Q-2i-LSQ.text" = "Artist Name";

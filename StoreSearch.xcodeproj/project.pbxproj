@@ -10,7 +10,6 @@
 		2F2C392B1A15E12200D0280F /* PTRXLandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2C39291A15E12200D0280F /* PTRXLandscapeViewController.m */; };
 		2F2C392C1A15E12200D0280F /* PTRXLandscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C392A1A15E12200D0280F /* PTRXLandscapeViewController.xib */; };
 		2F33432A1A189F0C00008283 /* PTRXSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3343291A189F0C00008283 /* PTRXSearch.m */; };
-		2F4307D51A1307D000CCE884 /* PTRXLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4307D41A1307D000CCE884 /* PTRXLoadingCell.xib */; };
 		2F51E41F1A0FB49100702944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E41E1A0FB49100702944 /* Foundation.framework */; };
 		2F51E4211A0FB49100702944 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E4201A0FB49100702944 /* CoreGraphics.framework */; };
 		2F51E4231A0FB49100702944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F51E4221A0FB49100702944 /* UIKit.framework */; };
@@ -24,14 +23,16 @@
 		2F51E4481A0FB49100702944 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4461A0FB49100702944 /* InfoPlist.strings */; };
 		2F51E44A1A0FB49100702944 /* StoreSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4491A0FB49100702944 /* StoreSearchTests.m */; };
 		2F51E4561A0FB5A100702944 /* PTRXSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */; };
-		2F51E4571A0FB5A100702944 /* PTRXSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */; };
 		2F51E45A1A0FC54C00702944 /* PTRXSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */; };
 		2F5D90761A106B1200CC4C02 /* PTRXSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5D90751A106B1200CC4C02 /* PTRXSearchResultCell.xib */; };
 		2F5D907F1A10713000CC4C02 /* PTRXSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D907E1A10713000CC4C02 /* PTRXSearchResultCell.m */; };
-		2F5D90831A10770A00CC4C02 /* PTRXNothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */; };
 		2F6E74D51A15103800AE0290 /* PTRXGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E74D41A15103800AE0290 /* PTRXGradientView.m */; };
 		2FE553C51A14916000CC0705 /* PTRXDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE553C31A14916000CC0705 /* PTRXDetailViewController.m */; };
-		2FE553C61A14916000CC0705 /* PTRXDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FE553C41A14916000CC0705 /* PTRXDetailViewController.xib */; };
+		2FEABEA81A1905600036A806 /* PTRXLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEABEAA1A1905600036A806 /* PTRXLoadingCell.xib */; };
+		2FEABEAC1A1905DE0036A806 /* PTRXSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEABEAE1A1905DE0036A806 /* PTRXSearchViewController.xib */; };
+		2FEABEB21A1906B00036A806 /* PTRXDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEABEB41A1906B00036A806 /* PTRXDetailViewController.xib */; };
+		2FEABEB71A1906E20036A806 /* PTRXNothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEABEB91A1906E20036A806 /* PTRXNothingFoundCell.xib */; };
+		2FEABEBD1A1909600036A806 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FEABEBC1A1909600036A806 /* Localizable.strings */; };
 		FA7331F0BF3B987D489AFE64 /* libPods-StoreSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 869FF4F7902BC3F8012CE482 /* libPods-StoreSearch.a */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +53,6 @@
 		2F2C392A1A15E12200D0280F /* PTRXLandscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXLandscapeViewController.xib; sourceTree = "<group>"; };
 		2F3343281A189F0C00008283 /* PTRXSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearch.h; sourceTree = "<group>"; };
 		2F3343291A189F0C00008283 /* PTRXSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearch.m; sourceTree = "<group>"; };
-		2F4307D41A1307D000CCE884 /* PTRXLoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXLoadingCell.xib; sourceTree = "<group>"; };
 		2F51E41B1A0FB49100702944 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F51E41E1A0FB49100702944 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F51E4201A0FB49100702944 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,18 +71,26 @@
 		2F51E4491A0FB49100702944 /* StoreSearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreSearchTests.m; sourceTree = "<group>"; };
 		2F51E4531A0FB5A100702944 /* PTRXSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchViewController.h; sourceTree = "<group>"; };
 		2F51E4541A0FB5A100702944 /* PTRXSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchViewController.m; sourceTree = "<group>"; };
-		2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXSearchViewController.xib; sourceTree = "<group>"; };
 		2F51E4581A0FC54C00702944 /* PTRXSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchResult.h; sourceTree = "<group>"; };
 		2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchResult.m; sourceTree = "<group>"; };
 		2F5D90751A106B1200CC4C02 /* PTRXSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXSearchResultCell.xib; sourceTree = "<group>"; };
 		2F5D907D1A10713000CC4C02 /* PTRXSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXSearchResultCell.h; sourceTree = "<group>"; };
 		2F5D907E1A10713000CC4C02 /* PTRXSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXSearchResultCell.m; sourceTree = "<group>"; };
-		2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXNothingFoundCell.xib; sourceTree = "<group>"; };
 		2F6E74D31A15103800AE0290 /* PTRXGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXGradientView.h; sourceTree = "<group>"; };
 		2F6E74D41A15103800AE0290 /* PTRXGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXGradientView.m; sourceTree = "<group>"; };
 		2FE553C21A14916000CC0705 /* PTRXDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTRXDetailViewController.h; sourceTree = "<group>"; };
 		2FE553C31A14916000CC0705 /* PTRXDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTRXDetailViewController.m; sourceTree = "<group>"; };
-		2FE553C41A14916000CC0705 /* PTRXDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTRXDetailViewController.xib; sourceTree = "<group>"; };
+		2FEABEA91A1905600036A806 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PTRXLoadingCell.xib; sourceTree = "<group>"; };
+		2FEABEAB1A1905740036A806 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/PTRXLoadingCell.xib"; sourceTree = "<group>"; };
+		2FEABEAF1A1905F30036A806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PTRXSearchViewController.xib; sourceTree = "<group>"; };
+		2FEABEB11A1905FA0036A806 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PTRXSearchViewController.strings"; sourceTree = "<group>"; };
+		2FEABEB31A1906B00036A806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PTRXDetailViewController.xib; sourceTree = "<group>"; };
+		2FEABEB61A1906B50036A806 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PTRXDetailViewController.strings"; sourceTree = "<group>"; };
+		2FEABEB81A1906E20036A806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PTRXNothingFoundCell.xib; sourceTree = "<group>"; };
+		2FEABEBB1A1906E70036A806 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PTRXNothingFoundCell.strings"; sourceTree = "<group>"; };
+		2FEABEBC1A1909600036A806 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2FEABEBE1A190A240036A806 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2FEABEBF1A190A290036A806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		869FF4F7902BC3F8012CE482 /* libPods-StoreSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StoreSearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91BDAB20F0D22BEE111E9915 /* Pods-StoreSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoreSearch/Pods-StoreSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,13 +163,13 @@
 				2F51E4591A0FC54C00702944 /* PTRXSearchResult.m */,
 				2F5D907D1A10713000CC4C02 /* PTRXSearchResultCell.h */,
 				2F5D907E1A10713000CC4C02 /* PTRXSearchResultCell.m */,
-				2F51E4551A0FB5A100702944 /* PTRXSearchViewController.xib */,
+				2FEABEAE1A1905DE0036A806 /* PTRXSearchViewController.xib */,
 				2F5D90751A106B1200CC4C02 /* PTRXSearchResultCell.xib */,
-				2F5D90821A10770A00CC4C02 /* PTRXNothingFoundCell.xib */,
-				2F4307D41A1307D000CCE884 /* PTRXLoadingCell.xib */,
+				2FEABEB91A1906E20036A806 /* PTRXNothingFoundCell.xib */,
+				2FEABEAA1A1905600036A806 /* PTRXLoadingCell.xib */,
 				2FE553C21A14916000CC0705 /* PTRXDetailViewController.h */,
 				2FE553C31A14916000CC0705 /* PTRXDetailViewController.m */,
-				2FE553C41A14916000CC0705 /* PTRXDetailViewController.xib */,
+				2FEABEB41A1906B00036A806 /* PTRXDetailViewController.xib */,
 				2F6E74D31A15103800AE0290 /* PTRXGradientView.h */,
 				2F6E74D41A15103800AE0290 /* PTRXGradientView.m */,
 				2F2C39281A15E12200D0280F /* PTRXLandscapeViewController.h */,
@@ -182,6 +190,7 @@
 				2F51E4271A0FB49100702944 /* InfoPlist.strings */,
 				2F51E42A1A0FB49100702944 /* main.m */,
 				2F51E42C1A0FB49100702944 /* StoreSearch-Prefix.pch */,
+				2FEABEBC1A1909600036A806 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -275,6 +284,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 2F51E4121A0FB49100702944;
 			productRefGroup = 2F51E41C1A0FB49100702944 /* Products */;
@@ -293,13 +303,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F2C392C1A15E12200D0280F /* PTRXLandscapeViewController.xib in Resources */,
-				2F4307D51A1307D000CCE884 /* PTRXLoadingCell.xib in Resources */,
-				2F5D90831A10770A00CC4C02 /* PTRXNothingFoundCell.xib in Resources */,
+				2FEABEA81A1905600036A806 /* PTRXLoadingCell.xib in Resources */,
+				2FEABEB71A1906E20036A806 /* PTRXNothingFoundCell.xib in Resources */,
 				2F5D90761A106B1200CC4C02 /* PTRXSearchResultCell.xib in Resources */,
+				2FEABEBD1A1909600036A806 /* Localizable.strings in Resources */,
 				2F51E4371A0FB49100702944 /* Images.xcassets in Resources */,
-				2FE553C61A14916000CC0705 /* PTRXDetailViewController.xib in Resources */,
+				2FEABEB21A1906B00036A806 /* PTRXDetailViewController.xib in Resources */,
 				2F51E4291A0FB49100702944 /* InfoPlist.strings in Resources */,
-				2F51E4571A0FB5A100702944 /* PTRXSearchViewController.xib in Resources */,
+				2FEABEAC1A1905DE0036A806 /* PTRXSearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +397,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				2F51E4281A0FB49100702944 /* en */,
+				2FEABEBE1A190A240036A806 /* zh-Hans */,
+				2FEABEBF1A190A290036A806 /* Base */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -396,6 +409,42 @@
 				2F51E4471A0FB49100702944 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2FEABEAA1A1905600036A806 /* PTRXLoadingCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FEABEA91A1905600036A806 /* en */,
+				2FEABEAB1A1905740036A806 /* zh-Hans */,
+			);
+			name = PTRXLoadingCell.xib;
+			sourceTree = "<group>";
+		};
+		2FEABEAE1A1905DE0036A806 /* PTRXSearchViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FEABEAF1A1905F30036A806 /* Base */,
+				2FEABEB11A1905FA0036A806 /* zh-Hans */,
+			);
+			name = PTRXSearchViewController.xib;
+			sourceTree = "<group>";
+		};
+		2FEABEB41A1906B00036A806 /* PTRXDetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FEABEB31A1906B00036A806 /* Base */,
+				2FEABEB61A1906B50036A806 /* zh-Hans */,
+			);
+			name = PTRXDetailViewController.xib;
+			sourceTree = "<group>";
+		};
+		2FEABEB91A1906E20036A806 /* PTRXNothingFoundCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FEABEB81A1906E20036A806 /* Base */,
+				2FEABEBB1A1906E70036A806 /* zh-Hans */,
+			);
+			name = PTRXNothingFoundCell.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

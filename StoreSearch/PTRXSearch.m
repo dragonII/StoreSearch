@@ -80,9 +80,16 @@ static NSOperationQueue *queue = nil;
         case 3: categoryName = @"ebook"; break;
     }
     
+    NSLocale *locale = [NSLocale autoupdatingCurrentLocale];
+    NSString *language = [locale localeIdentifier];
+    NSString *countryCode = [locale objectForKey:NSLocaleCountryCode];
+    
     NSString *escapeSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapeSearchText, categoryName];
+    //NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapeSearchText, categoryName];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200&entity=%@&lang=%@&country=%@", escapeSearchText, categoryName, language, countryCode];
+    
     NSLog(@"urlString: '%@", urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     return url;
