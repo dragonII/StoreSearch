@@ -379,6 +379,8 @@ static NSString * const LoadingCellIdentifier = @"LoadingCell";
                                [self showNetworkError];
                            }
                            
+                           [_landscapeViewController searchResultsReceived];
+                           
                            [self.tableView reloadData];
     }];
     

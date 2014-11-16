@@ -16,4 +16,6 @@
 
 @property (strong, nonatomic) PTRXSearch *search;
 
+- (void)searchResultsReceived;
+
 @end
